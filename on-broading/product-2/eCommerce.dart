@@ -1,27 +1,25 @@
 import 'dart:io';
 
-// Product Class
 class Product {
-  // Private fields
   String _name;
   String _description;
   double _price;
 
-  // Constructor
   Product(
-      {required String name,
-      required String description,
-      required double price})
+          {
+            required String name,
+            required String description,
+            required double price
+          }
+       )
       : _name = name,
         _description = description,
         _price = price;
 
-  // Getters
   String get name => _name;
   String get description => _description;
   double get price => _price;
 
-  // Setters
   set name(String name) => _name = name;
   set description(String description) => _description = description;
   set price(double price) => _price = price;
@@ -91,14 +89,14 @@ void main() {
 
   while (true) {
     print('''
-Menu:
-1. Add Product
-2. View All Products
-3. View Single Product
-4. Edit Product
-5. Delete Product
-6. Exit
-Choose an option:''');
+        Menu:
+        1. Add Product
+        2. View All Products
+        3. View Single Product
+        4. Edit Product
+        5. Delete Product
+        6. Exit
+        Choose an option:''');
 
     String? choice = stdin.readLineSync();
 
