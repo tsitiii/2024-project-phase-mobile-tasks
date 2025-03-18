@@ -204,10 +204,11 @@ class _FaceBookPageState extends State<FaceBookPage> {
                 alignment: Alignment.bottomCenter,
                 children: [
                   Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Image.asset('images/abiy.jpg',
-                          width: 90, height: 90)),
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                    child:
+                        Image.asset('images/abiy.jpg', width: 90, height: 90),
+                  ),
                   Positioned(
                     bottom: 1,
                     right: 3,
@@ -269,7 +270,7 @@ class _FaceBookPageState extends State<FaceBookPage> {
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
-                          'Post ${index + 1}', // Example title
+                          'Post ${index + 1}',
                           style: const TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold),
                         ),
