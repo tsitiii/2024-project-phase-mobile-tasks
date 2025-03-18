@@ -18,6 +18,28 @@ class _FaceBookPageState extends State<FaceBookPage> {
     'images/nike2.jpg',
   ];
 
+  // Static data for posts
+  final List<Map<String, String>> posts = [
+    {
+      'profileImage': 'images/harry.jpg',
+      'userName': 'Deven Mestry',
+      'postImage': 'images/nike.jpg',
+      'caption': 'Check out my new shoes!',
+    },
+    {
+      'profileImage': 'images/house4.jpg',
+      'userName': 'John Doe',
+      'postImage': 'images/home2.jpg',
+      'caption': 'Home sweet home!',
+    },
+    {
+      'profileImage': 'images/abiy.jpg',
+      'userName': 'Jane Smith',
+      'postImage': 'images/jordan.jpg',
+      'caption': 'Loving these kicks!',
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -138,7 +160,7 @@ class _FaceBookPageState extends State<FaceBookPage> {
                   children: [
                     Icon(Icons.video_camera_back),
                     SizedBox(width: 8),
-                    Text('room'),
+                    Text('Room'),
                   ],
                 ),
               ),
@@ -183,12 +205,19 @@ class _FaceBookPageState extends State<FaceBookPage> {
               Stack(
                 children: [
                   Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(40)),
-                      child: Image.asset('images/gumball.jpg',
-                          width: 90, height: 90)),
+                    width: 90,
+                    height: 90,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: const DecorationImage(
+                        image: AssetImage('images/gumball.jpg'),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
                   Positioned(
                     bottom: 1,
+                    right: 3,
                     child: SizedBox(
                       width: 20,
                       height: 20,
@@ -197,17 +226,24 @@ class _FaceBookPageState extends State<FaceBookPage> {
                         child: const Icon(Icons.add),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
               Stack(
                 alignment: Alignment.bottomCenter,
                 children: [
                   Container(
-                    decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(20)),
-                    child:
-                        Image.asset('images/abiy.jpg', width: 90, height: 90),
+                    width: 95,
+                    height: 100,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: const DecorationImage(
+                        image: AssetImage(
+                          'images/abiy.jpg',
+                        ),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
                   Positioned(
                     bottom: 1,
@@ -227,10 +263,14 @@ class _FaceBookPageState extends State<FaceBookPage> {
                 alignment: Alignment.bottomCenter,
                 children: [
                   Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Image.asset('images/harry.jpg',
-                          width: 90, height: 90)),
+                    width: 95,
+                    height: 100,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: const DecorationImage(
+                          image: AssetImage('images/harry.jpg')),
+                    ),
+                  ),
                   Positioned(
                     bottom: 1,
                     child: SizedBox(
@@ -246,52 +286,68 @@ class _FaceBookPageState extends State<FaceBookPage> {
               ),
             ],
           ),
-          const SizedBox(height: 20),
-          // Posts Section
           Expanded(
             child: ListView.builder(
-              itemCount: imagePaths.length,
+              itemCount: posts.length,
               itemBuilder: (context, index) {
                 return Card(
                   margin:
-                      const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.asset(
-                          imagePaths[index],
-                          width: double.infinity,
-                          height: 100,
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Profile section
+                        Row(
+                          children: [
+                            ClipOval(
+                              child: Image.asset(
+                                posts[index]['profileImage']!,
+                                width: 50,
+                                height: 50,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            Text(
+                              posts[index]['userName']!,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(width: 10),
+                        Text(
+                          posts[index]['caption']!,
+                          style: const TextStyle(color: Colors.grey),
+                        ),
+                        const SizedBox(height: 10),
+                        Image.asset(
+                          posts[index]['postImage']!,
                           fit: BoxFit.cover,
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          'Post ${index + 1}',
-                          style: const TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold),
+
+                        FloatingActionButton(
+                          onPressed: () {},
+                          child: const Row(
+                            children: [
+                              Icon(Icons.thumbs_up_down),
+                              SizedBox(
+                                width: 40,
+                              ),
+                              Icon(Icons.comment),
+                              SizedBox(
+                                width: 40,
+                              ),
+                              Icon(Icons.share),
+                            ],
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Text(
-                            "This is an amazing post for post ${index + 1}"),
-                      ),
-                      ButtonBar(
-                        alignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          TextButton(
-                              onPressed: () {}, child: const Text("Like")),
-                          TextButton(
-                              onPressed: () {}, child: const Text("Comment")),
-                          TextButton(
-                              onPressed: () {}, child: const Text("Share")),
-                        ],
-                      ),
-                    ],
+                        const SizedBox(height: 10),
+                      ],
+                    ),
                   ),
                 );
               },
